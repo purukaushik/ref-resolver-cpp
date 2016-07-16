@@ -1,4 +1,8 @@
-/.idea/**
-./CMakeFiles/**
-./bin/**
-./build/**
+.idea/**
+/CMakeFiles/**
+/bin/**
+/build/**
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+*.json
