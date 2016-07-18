@@ -38,10 +38,8 @@ public:
 };
 
 const SchemaDocument* Resolver::GetRemoteDocument(const Ch* uri, SizeType length){
-    //printf("%s, %d",uri, length);
     length = length + 0;
     vector<string> split_stuff = split(uri, '#');
-    //cout<<endl;
 
     if(split_stuff.size()!=2){
         cout<<"Something wrong."<<endl;
@@ -51,7 +49,6 @@ const SchemaDocument* Resolver::GetRemoteDocument(const Ch* uri, SizeType length
     string jsonPointer = split_stuff[1];
 
 
-    //cout<<endl<<fileUri<<" and "<<jsonPointer<<endl;
 
     Document d = getDocumentFromFile(fileUri);
     Resolver resolver;
@@ -88,18 +85,13 @@ Document getDocumentFromFile(string fileUri){
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        fprintf(stderr, "Usage: refresolver schema.json < input.json\n");
+        fprintf(stderr, "Usage: ref-resolver-cpp schema.json < input.json\n");
         return EXIT_FAILURE;
     }
-
-    // Read a JSON schema from file into Document
     Document d = getDocumentFromFile(argv[1]);
-
-    // Then convert the Document into SchemaDocument
 
     Resolver resolver;
 
-    // Use reader to parse the JSON in stdin, and forward SAX events to validator
     SchemaDocument schemaDocument(d, &resolver);
     SchemaValidator validator(schemaDocument);
 
